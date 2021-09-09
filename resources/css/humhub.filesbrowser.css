@@ -1,0 +1,40 @@
+#cfiles-container .row {
+  margin: 0px;
+}
+
+#cfiles-folderView {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.heading-search {
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  padding: 10px !important;
+}
+
+.center-text {
+  text-align: center;
+}
+
+#ajaxloader {
+  background: url("../images/ajax-loader.gif") no-repeat scroll center center transparent;
+  bottom: 0;
+  height: 32px;
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.fbrowser-folder,
+.folder-link,
+.title-link {
+  cursor: pointer;
+}
+
+#step-files-back {
+  cursor: pointer;
+}

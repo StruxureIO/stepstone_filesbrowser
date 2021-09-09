@@ -1,0 +1,12 @@
+{
+    "id": "filesbrowser",
+    "name": "Filesbrowser",
+    "description": "A very basic module example",
+    "keywords": [
+    ],
+    "version": "1.0.1",
+    "humhub": {
+        "minVersion": "1.2"
+    },
+    "screenshots": ["resources/screen1.jpg"]
+}
