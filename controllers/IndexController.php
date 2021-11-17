@@ -15,16 +15,12 @@ class IndexController extends Controller {
 
 
   public function actionIndex(){
-    
       
-//    $folders = (new Query())
-//              ->select(['cfiles_folder.*'])
-//              ->from('cfiles_folder')
-//              ->where('parent_folder_id = ' . $this->parent_folder) 
-//              ->orderBy(['title' => SORT_DESC])
-//              ->all();
-
-    return $this->render('index');
+    $connection = Yii::$app->getDb();    
+    $command = $connection->createCommand("SELECT id FROM cfiles_folder WHERE `parent_folder_id` is null order by id limit 0, 1");
+    $folders = $command->queryOne();   
+    
+    return $this->render('index', ['root' => $folders['id']]);
   }
 
   public function actionExample(){
