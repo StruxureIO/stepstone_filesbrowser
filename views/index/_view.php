@@ -13,12 +13,22 @@ $current_user_id = \Yii::$app->user->identity->ID;
 
 if($folders) { 
   
-  $base_url = Url::base() . '/index.php?r=file%2Ffile%2Fdownload&guid=';
+  if (\Yii::$app->urlManager->enablePrettyUrl) 
+    $base_url = Url::base() . '/file/file/download?guid=';
+  else
+    $base_url = Url::base() . '/index.php?r=file%2Ffile%2Fdownload&guid=';
 
   foreach($folders as $folder) {
-        
+            
     $icon_class = FileIcons::get_file_icon($folder['title'], $folder['file_type']);        
-    $href = ($folder['file_type'] == 'b') ? 'href="'.$base_url. $folder['guid'] .'" target="_blank"' : 'class="title-link"';
+    
+    if (\Yii::$app->urlManager->enablePrettyUrl) {
+      $hash_sha1 = "&hash_sha1=" . substr($folder['hash_sha1'], 0, 8);      
+      $href = ($folder['file_type'] == 'b') ? 'href="'.$base_url. $folder['guid'] . $hash_sha1 .'" target="_blank"' : 'class="title-link"';
+    } else {
+      $href = ($folder['file_type'] == 'b') ? 'href="'.$base_url. $folder['guid'] .'" target="_blank"' : 'class="title-link"';
+    }  
+    
     $size = ($folder['size'] == '') ? '-&nbsp;&nbsp;' : number_format($folder['size']);
     $file_date = ($folder['updated_at'] == '') ? '' : date("m/d/Y", strtotime($folder['updated_at']));    
     
