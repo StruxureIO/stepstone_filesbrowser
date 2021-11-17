@@ -43,11 +43,11 @@ class IndexController extends Controller {
         
     $connection = Yii::$app->getDb();    
     $command = $connection->createCommand("(select f.id, file_name as title, size, created_at, 
-updated_at, guid, mime_type, 'b' as file_type from file as f 
+updated_at, guid, hash_sha1, mime_type, 'b' as file_type from file as f 
 left join cfiles_file as cf on (f.object_id = cf.id) 
 where parent_folder_id = $folder_id and object_model like '%cfile%')
 union
-(select id, title, '', '', '', '', '', 'a' as file_type from cfiles_folder 
+(select id, title, '', '', '', '', '', '', 'a' as file_type from cfiles_folder 
 where parent_folder_id = $folder_id and title != 'Files from the stream') order by file_type, title");
 
     $folders = $command->queryAll();   
