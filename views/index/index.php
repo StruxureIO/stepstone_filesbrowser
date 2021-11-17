@@ -92,7 +92,7 @@ $csrf_param = Yii::$app->request->csrfParam;
 $csrf_token = Yii::$app->request->csrfToken;
 $this->registerJs("
   
-  load_latest_vidoes(1, '', '');
+  load_latest_vidoes($root, '', '');
   
   function load_latest_vidoes(folder_id, operation, folder_name) {
     
