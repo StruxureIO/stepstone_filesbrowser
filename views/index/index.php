@@ -51,7 +51,7 @@ $this->registerJsConfig("filesbrowser", [
                     <a id="step-files-back"><i class="far fa-arrow-left" aria-hidden="true"></i></a>
                   </li>
                   <li>
-                    <a id="home-icon" class="fbrowser-folder" data-id="1" ><i class="fa fa-home fa-lg fa-fw"></i> </a>
+                    <a id="home-icon" class="fbrowser-folder" data-id="<?php echo $root ?>" ><i class="fa fa-home fa-lg fa-fw"></i> </a>
                   </li>
                 </ol>
                 <!--<p><input type="text" id="current-folder" value="1" ></p>-->
