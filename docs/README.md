@@ -1,44 +1,13 @@
-[![PHP Codeception Tests](https://github.com/humhub/humhub-modules-filesbrowser/actions/workflows/php-test.yml/badge.svg)](https://github.com/humhub/humhub-modules-filesbrowser/actions/workflows/php-test.yml)
-
-# Basic Example Module
-
-Is a simple module skeleton to illustrate the module interface of HumHub.
-
-Alternatively you can use a module generator for HumHub in the [DevTools module](https://github.com/humhub-contrib/devtools).
-
-## Use Boilerplate
-
-1.) Checkout module
-
-Clone the module and then delete the Git files. This is necessary to move the module to a new Git repository later.
-
-``` 
-cd my-new-project
-git clone https://github.com/humhub/humhub-modules-filesbrowser.git .
-rm .git -rf
-```
-
-
-2.) Modify the file `docs/rewrite-module-id.php` and set the variables `$newModuleId` and `$newNamespace`.
-
-** Example: **
-
-```php
-// docs/rewrite-module-id.php
-
-// ...
-
-$newModuleId = "formbuilder";
-$newNamespace = 'coolSoft\humhub\modules\formbuilder';
-
-// ...
-```
-
-3.) Run the `docs/rewrite-id.php` from shell.
-
-``` 
-cd docs/
-php rewrite-module-id.php
-```
-
-4.) Run the `docs/rewrite-id.php` from shell.
+The file browser works in conjunction with the Files HumHub module. The Files HumHub 
+module allows an administrator to add files for viewing or download from a HumHub space. 
+Files are saved in a way that obscures that file path and file name and only with the correct 
+hashed URL can a file be accessed. The file browser is a global module that access the files 
+module's data and allows folders and links to files to be accessed out side of the space. 
+ 
+To add a folder in the Files module, go to the space containing the module, click the Files link 
+in the menu, and then click the Add Directory button. Enter a directory name in the popup 
+window that appears, an optional description and also check the public checkbox. Then click 
+the Save button. The new folder will be added and opened. Now, new files can be added to the 
+newly created folder. Click the Add File button, to display the file dialog box and select a file to 
+upload. Once uploaded you can verify that the file is now available in the file browser by visiting 
+the file browser where clicking on the folder contains it and then clicking on the file. 
