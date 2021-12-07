@@ -47,8 +47,9 @@ updated_at, guid, hash_sha1, mime_type, 'b' as file_type from file as f
 left join cfiles_file as cf on (f.object_id = cf.id) 
 where parent_folder_id = $folder_id and object_model like '%cfile%')
 union
-(select id, title, '', '', '', '', '', '', 'a' as file_type from cfiles_folder 
-where parent_folder_id = $folder_id and title != 'Files from the stream') order by file_type, title");
+(select f.id, title, '', '', updated_at, '', '', '', 'a' as file_type from cfiles_folder as f
+left join content as cn on (cn.object_id = f.id)
+where parent_folder_id = $folder_id and title != 'Files from the stream' group by f.id ) order by file_type, title");
 
     $folders = $command->queryAll();   
     
