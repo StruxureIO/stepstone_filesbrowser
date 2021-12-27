@@ -8,8 +8,7 @@ use humhub\modules\filesbrowser\helpers\FileIcons;
 $html = '';
 //$pagination = '';
 $folder_name = 'Home';
-
-$current_user_id = \Yii::$app->user->identity->ID;
+$favorite = '';
 
 if($folders) { 
   
@@ -29,10 +28,12 @@ if($folders) {
       $href = ($folder['file_type'] == 'b') ? 'href="'.$base_url. $folder['guid'] .'" target="_blank"' : 'class="title-link"';
     }  
     
+    $checked = ($folder['fav_id'] == null ) ? '' : 'checked';
+    
     $size = ($folder['size'] == '') ? '-&nbsp;&nbsp;' : number_format($folder['size']);
     $file_date = ($folder['updated_at'] == '') ? '' : date("m/d/Y", strtotime($folder['updated_at']));    
     
-    $html .= '<tr >' . PHP_EOL;
+    $html .= '<tr>' . PHP_EOL;
     $html .= '  <td class="text-left">' . PHP_EOL;
     $html .= '    <div class="title" style="position:relative">' . PHP_EOL;
     $html .= '      <i class="'.$icon_class.'"></i>&nbsp;<a '. $href .' data-id="'. $folder['id'].'">'.$folder['title']. ' ' .'</a> ' . PHP_EOL;
@@ -40,6 +41,9 @@ if($folders) {
     $html .= '  </td>' . PHP_EOL;
     $html .= '  <td class="hidden-xs text-right">' . PHP_EOL;    
     $html .= '    <div class="size pull-right">'.$size.'</div>' . PHP_EOL;
+    $html .= '  </td>' . PHP_EOL;
+    $html .= '  <td class="hidden-xs text-right">' . PHP_EOL;    
+    $html .= '    <div class="favorite text-center"><a class="step-favorite" file-id="'. $folder['id'].'" data-user="'.$current_user_id.'"><span class="fa fa-star '.$checked.'"></span></a></div>' . PHP_EOL;
     $html .= '  </td>' . PHP_EOL;
     $html .= '  <td class="hidden-xxs text-right">' . PHP_EOL;
     $html .= '    <div class="timestamp pull-right">' . PHP_EOL;
