@@ -9,15 +9,8 @@ use humhub\widgets\Button;
 // Register our module assets, this could also be done within the controller
 Assets::register($this);
 
-$displayName = (Yii::$app->user->isGuest) ? Yii::t('FilesbrowserModule.base', 'Guest') : Yii::$app->user->getIdentity()->displayName;
+//$displayName = (Yii::$app->user->isGuest) ? Yii::t('FilesbrowserModule.base', 'Guest') : Yii::$app->user->getIdentity()->displayName;
 
-// Add some configuration to our js module
-$this->registerJsConfig("filesbrowser", [
-  'username' => (Yii::$app->user->isGuest) ? $displayName : Yii::$app->user->getIdentity()->username,
-  'text' => [
-      'hello' => Yii::t('FilesbrowserModule.base', 'Hi there {name}!', ["name" => $displayName])
-  ]
-])
 ?>
 <div id="layout-content">
   <div class="container">
@@ -70,6 +63,7 @@ $this->registerJsConfig("filesbrowser", [
                     <tr>
                       <th class="text-left" data-ui-sort="name" data-ui-order="DESC"> Name </th>
                       <th class="hidden-xs text-right" data-ui-sort="size">Size</th>
+                      <th class="hidden-xs text-center" data-ui-sort="favorite">Favorite</th>
                       <th class="hidden-xxs text-right" data-ui-sort="updated_at">Updated</th>
                     </tr>
                   </thead>
@@ -86,6 +80,7 @@ $this->registerJsConfig("filesbrowser", [
   </div>
 </div>
 <?php
+$ajax_favorite = yii\helpers\Url::to(['ajax-favorite']);
 $ajax_view = yii\helpers\Url::to(['ajax-view']);
 $ajax_search = yii\helpers\Url::to(['ajax-search']);
 $csrf_param = Yii::$app->request->csrfParam;
@@ -190,6 +185,41 @@ $this->registerJs("
     
     }  
   }
+   
+  $(document).on('click', '.step-favorite', function (e) {
+    e.stopImmediatePropagation();
+    var favorite_icon = $(this).find('svg.svg-inline--fa.fa-star')
+    //console.log('favorite_icon',favorite_icon);
+    var user_id = $(this).attr('data-user');
+    var file_id  = $(this).attr('file-id');
+    if( $(favorite_icon).hasClass('checked') ) {
+      $(favorite_icon).removeClass('checked');
+      update_favorite(user_id, file_id, false);
+    } else {
+      $(favorite_icon).addClass('checked');
+      update_favorite(user_id, file_id, true);
+    }  
+  });
+
+  function update_favorite(user_id, file_id, status) {
+    console.log('user_id',user_id,'file_id',file_id,'status',status);
+    $('#ajaxloader').show();
+    $.ajax({
+      'type' : 'GET',
+      'url' : '$ajax_favorite',
+      'dataType' : 'html',
+      'data' : {
+        '$csrf_param' : '$csrf_token',
+        'user_id' : user_id,
+        'file_id' : file_id,
+        'status' : status
+      },
+      'success' : function(data){
+        $('#ajaxloader').hide();
+      }
+    });  
+  }
+  
    
 ");
 ?>

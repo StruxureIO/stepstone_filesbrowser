@@ -38,3 +38,13 @@
 #step-files-back {
   cursor: pointer;
 }
+
+
+.hidden-xxs.text-right,
+.hidden-xs.text-right {
+    width: 200px;
+}
+
+.checked {
+  color: #EDAE49;
+}
