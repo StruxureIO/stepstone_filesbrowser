@@ -39,6 +39,9 @@
   cursor: pointer;
 }
 
+.step-favorite {
+  padding-right: 12px;
+}
 
 .hidden-xxs.text-right,
 .hidden-xs.text-right {
