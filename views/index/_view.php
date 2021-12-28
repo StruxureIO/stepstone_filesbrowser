@@ -43,7 +43,7 @@ if($folders) {
     $html .= '    <div class="size pull-right">'.$size.'</div>' . PHP_EOL;
     $html .= '  </td>' . PHP_EOL;
     $html .= '  <td class="hidden-xs text-right">' . PHP_EOL;    
-    $html .= '    <div class="favorite text-center"><a class="step-favorite" file-id="'. $folder['id'].'" data-user="'.$current_user_id.'"><span class="fa fa-star '.$checked.'"></span></a></div>' . PHP_EOL;
+    $html .= '    <div class="favorite text-right"><a class="step-favorite" file-id="'. $folder['id'].'" data-user="'.$current_user_id.'"><span class="fa fa-star '.$checked.'"></span></a></div>' . PHP_EOL;
     $html .= '  </td>' . PHP_EOL;
     $html .= '  <td class="hidden-xxs text-right">' . PHP_EOL;
     $html .= '    <div class="timestamp pull-right">' . PHP_EOL;

@@ -63,7 +63,7 @@ Assets::register($this);
                     <tr>
                       <th class="text-left" data-ui-sort="name" data-ui-order="DESC"> Name </th>
                       <th class="hidden-xs text-right" data-ui-sort="size">Size</th>
-                      <th class="hidden-xs text-center" data-ui-sort="favorite">Favorite</th>
+                      <th class="hidden-xs text-right" data-ui-sort="favorite">Favorite</th>
                       <th class="hidden-xxs text-right" data-ui-sort="updated_at">Updated</th>
                     </tr>
                   </thead>
